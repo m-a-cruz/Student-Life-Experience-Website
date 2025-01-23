@@ -5,6 +5,7 @@ import '../css/login.css';
 
 const Login = () => {
   const [users, setUsers] = useState([]);
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -24,12 +25,11 @@ const Login = () => {
     }
   };
 
-  // Validate the email input and check if the user exists
   const validate = (event) => {
     event.preventDefault();
     setErrorMessage(''); // Reset error message
 
-    // Email validation regex
+    // Improved email validation regex
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Check if email is valid
@@ -38,20 +38,28 @@ const Login = () => {
       return;
     }
 
-    const user = users.find((user) => user['Email Address'] === email);
-    if (user) {
-      if (user.Status === "Active" && user['Remarks (Yes/No)'] === "No") {
-        // Save the user id in local storage and navigate to the forms page
-        localStorage.setItem('email', user['Email Address']);
-        navigate('/forms');
-      } else if (user.Status !== "Active") {
-        setErrorMessage('User  details do not exist!');
-        navigate('/');
-      } else if (user.Status === "Active" && user['Remarks (Yes/No)'] === "Yes") {
-        setErrorMessage('User  has already taken the survey!');
-      }
-    } else {
-      setErrorMessage('Invalid Gbox email account!');
+    // Check if password is valid (e.g., minimum length, contains uppercase, number, special character)
+    if (password.length < 6 || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*]/.test(password)) {
+      setErrorMessage('Password must be at least 6 characters long and include uppercase letters, numbers, and special characters.');
+      return;
+    }
+
+    // If validation passes, proceed with login
+    handleLogin();
+  };
+
+  const handleLogin = async () => {
+    setLoading(true); // Set loading state
+    try {
+      // Replace with your actual login API endpoint
+      const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
+      console.log('Login successful:', response.data);
+      navigate('/next-page'); // Navigate to the next page on successful login
+    } catch (error) {
+      setErrorMessage('Login failed. Please check your credentials and try again.');
+      console.error('Login error:', error);
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -73,8 +81,18 @@ const Login = () => {
                 aria-label="Email"
                 required
               />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="email-input w-full p-2 mb-4 border border-gray-300 rounded-lg"
+                id='password'
+                value={password}
+                onChange={event => setPassword(event.target.value)}
+                aria-label="Password"
+                required
+              />
               {/* Error Message */}
-              {errorMessage && <p className="text-red-500 mb-4" style={{ color: 'red',  fontSize: '16px', }}>{errorMessage}</p>}
+              {errorMessage && <p className="text-red-500 mb-4" style={{ color: 'red', fontSize: '10px' }}>{errorMessage}</p>}
               {/* Continue Button */}
               <button 
                 type="submit" 

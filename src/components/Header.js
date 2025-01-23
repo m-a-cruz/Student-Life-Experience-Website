@@ -6,12 +6,9 @@ const Header = () => {
   const navigate = useNavigate(); 
 
   const handleLoginClick = () => {
-    navigate('/login'); 
+    navigate('/login/admin'); 
   };
 
-  const handleDashboardClick = () => {
-    navigate('/dashboard'); 
-  };
 
   const home = () => {
     navigate('/home');
@@ -24,14 +21,10 @@ const Header = () => {
         <div className="header-logo">
           <img src="/ncfLogo1.png" alt="Logo" className="logo-image" onClick={home}/>
         </div>
-        
         {/* Login Button Section */}
         <div className="header-actions">
           <button className="login-button" onClick={handleLoginClick}>LOGIN</button>
         </div>
-        {/* <div className="header-actions">
-          <button className="dashboard-button" onClick={handleDashboardClick}>DASHBOARD</button>
-        </div> */}
       </div>
     </nav>
   );

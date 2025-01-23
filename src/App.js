@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Forms from './components/Forms';
+import LoginAdmin from './components/LoginAdmin'
 // import Questions from './components/Questions';
 // import { useState } from 'react';
 
@@ -15,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/admin" element={<LoginAdmin />} />
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forms" element={<Forms />} />

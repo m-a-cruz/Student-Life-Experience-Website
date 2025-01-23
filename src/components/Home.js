@@ -14,25 +14,33 @@ const Home = () => {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    // padding: "20px",
-    background: "#f9f9f9",
+    padding: "20px",
+    minHeight: "100vh",
+    background: "#f0f4f8",
     fontFamily: "Arial, sans-serif",
-  };
-
-  const headingStyle = {
-    textAlign: "justify",
-    fontSize: "22px",
-    fontWeight: "600",
-    // marginBottom: "20px",
-    color: "#064e3b",
   };
 
   const contentStyle = {
     textAlign: "justify",
     maxWidth: "800px",
-    // margin: "10px auto",
+    padding: "20px",
+    backgroundColor: "#ffffff",
+    borderRadius: "10px",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
     color: "#333",
-    lineHeight: "1.6",
+    lineHeight: "1.8",
+  };
+
+  const headingStyle = {
+    fontSize: "24px",
+    fontWeight: "700",
+    marginBottom: "20px",
+    color: "#064e3b",
+  };
+
+  const listStyle = {
+    margin: "20px 0",
+    paddingLeft: "20px",
   };
 
   const buttonStyle = {
@@ -43,17 +51,23 @@ const Home = () => {
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "16px",
-    alignSelf: "flex-end",
     marginTop: "20px",
-    marginLeft: "85%",
+    alignSelf: "flex-end",
+    transition: "background-color 0.3s ease, transform 0.2s ease",
+  };
+
+  const buttonHoverStyle = {
+    ...buttonStyle,
+    backgroundColor: "#056038",
+    transform: "scale(1.05)",
   };
 
   return (
     <div style={containerStyle}>
       <div style={contentStyle}>
-      <h1 style={headingStyle}>
-        Consent of Data Subject to Collection and Processing of Personal Data
-      </h1>
+        <h1 style={headingStyle}>
+          Consent of Data Subject to Collection and Processing of Personal Data
+        </h1>
         <p>Dear Students,</p>
         <p>
           We'd like to know how your college experience this year affected your
@@ -71,7 +85,7 @@ const Home = () => {
           rules, and regulations. The following data will be collected by the
           College of Computer Studies:
         </p>
-        <ul>
+        <ul style={listStyle}>
           <li>Email Address</li>
           <li>Survey Responses</li>
         </ul>
@@ -84,6 +98,14 @@ const Home = () => {
         <button
           aria-label="Confirm your consent to proceed"
           style={buttonStyle}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = buttonHoverStyle.backgroundColor;
+            e.target.style.transform = buttonHoverStyle.transform;
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = buttonStyle.backgroundColor;
+            e.target.style.transform = "scale(1)";
+          }}
           onClick={handleLoginClick}
         >
           CONFIRM
