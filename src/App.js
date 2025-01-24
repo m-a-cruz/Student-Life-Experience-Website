@@ -6,13 +6,11 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Forms from './components/Forms';
 import LoginAdmin from './components/LoginAdmin'
-import { AuthProvider } from './components/Auth';
 // import Questions from './components/Questions';
 // import { useState } from 'react';
 
 const App = () => {
   return (
-    <AuthProvider>
       <Router>
         <Header />
         <Routes>
@@ -25,7 +23,6 @@ const App = () => {
           {/* <Route path="/question" element={<Questions />} /> */}
         </Routes>
       </Router>
-    </AuthProvider>
   );
 };
 

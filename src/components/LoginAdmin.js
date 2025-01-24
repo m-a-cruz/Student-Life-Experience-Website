@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/login.css';
-import Header from './Header';
-
 const Login = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');

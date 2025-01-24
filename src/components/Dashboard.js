@@ -28,17 +28,21 @@ const styles = {
   },
   chartGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", // 3 charts per row, dynamic
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", // Responsive grid
     gap: "20px",
     width: "100%",
   },
   chartContainer: {
+    display: "flex", // Use flexbox for alignment
+    justifyContent: "center", // Center the content horizontally
+    alignItems: "center", // Center the content vertically
     backgroundColor: "#ffffff",
     borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
     transition: "transform 0.2s ease, box-shadow 0.2s ease",
     height: "auto", // Ensure charts adjust their height proportionally
+    padding: "10px", // Add some padding for better spacing
   },
   chartContainerHover: {
     transform: "scale(1.03)",
@@ -101,9 +105,9 @@ const Dashboard = () => {
     // Here, we just use the hardcoded values as an example.
     setSections([
       { id: 1, title: "Demographics", content: ["Q1", "Q2", "Q3"] },
-      { id: 2, title: "Experience", content: ["Q4", "Q5"] },
-      { id: 3, title: "Challenges", content: ["Q6", "Q7", "Q9"] },
-      { id: 4, title: "Satisfaction", content: ["Q8", "Q10", "Q11", "Q12"] },
+      { id: 2, title : "Experience", content: ["Q4", "Q5", "Q9"] },
+      { id: 3, title: "Challenges", content: ["Q6", "Q7", "Q12"] },
+      { id: 4, title: "Satisfaction", content: ["Q8", "Q10", "Q11"] },
     ]);
   };
 
