@@ -49,7 +49,7 @@ const Header = () => {
               LOGOUT
             </button>
           ) : (
-            <button className="login-button" onClick={handleLoginClick}>
+            <button className="logout-button" onClick={handleLoginClick}>
               LOGIN
             </button>
           )}
