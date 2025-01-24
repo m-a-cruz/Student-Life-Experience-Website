@@ -54,7 +54,7 @@ const Login = () => {
       // Replace with your actual login API endpoint
       const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
       console.log('Login successful:', response.data);
-      navigate('/next-page'); // Navigate to the next page on successful login
+      navigate('/dashboard'); // Navigate to the next page on successful login
     } catch (error) {
       setErrorMessage('Login failed. Please check your credentials and try again.');
       console.error('Login error:', error);
@@ -68,7 +68,7 @@ const Login = () => {
       <div className="m-10 p-4 max-w-sm bg-white border items-center border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className='main-content'>
           <div className="form-container">
-            <p className="form-text">Please enter your email address.</p>
+            <p className="form-text">Login</p>
             <form onSubmit={validate}>
               {/* Input Field */}
               <input
