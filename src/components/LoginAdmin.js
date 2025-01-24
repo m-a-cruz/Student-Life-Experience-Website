@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/login.css';
+import Header from './Header';
 
 const Login = () => {
-  const [users, setUsers] = useState([]);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,18 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Fetch users from the backend
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:5000/fetch-data');
-      setUsers(response.data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
 
   const validate = (event) => {
     event.preventDefault();
@@ -38,13 +27,11 @@ const Login = () => {
       return;
     }
 
-    // Check if password is valid (e.g., minimum length, contains uppercase, number, special character)
     if (password.length < 6 || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*]/.test(password)) {
       setErrorMessage('Password must be at least 6 characters long and include uppercase letters, numbers, and special characters.');
       return;
     }
 
-    // If validation passes, proceed with login
     handleLogin();
   };
 
@@ -54,7 +41,7 @@ const Login = () => {
       // Replace with your actual login API endpoint
       const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
       console.log('Login successful:', response.data);
-      navigate('/dashboard'); // Navigate to the next page on successful login
+      navigate('/dashboard', { state: { loggedOut: false }}); // Navigate to the next page on successful login
     } catch (error) {
       setErrorMessage('Login failed. Please check your credentials and try again.');
       console.error('Login error:', error);
@@ -65,6 +52,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
+      {/* <Headers /> */}
       <div className="m-10 p-4 max-w-sm bg-white border items-center border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className='main-content'>
           <div className="form-container">
